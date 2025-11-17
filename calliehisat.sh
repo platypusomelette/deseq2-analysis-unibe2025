@@ -15,10 +15,10 @@ CONTAINER="/containers/apptainer/hisat2_samtools_408dfd02f175cd88.sif"
 
 # Define paths
 GENOME_FA="/data/users/ksales/Unibe_RNASeq/Mus_musculus.GRCm39.dna.primary_assembly.fa"
-INDEX_DIR="/data/users/ksales/Unibe_RNASeq/hisat2index/attempt3"
+INDEX_DIR="/data/users/ksales/Unibe_RNASeq/hisat2/hisat2index/attempt3"
 INDEX_PREFIX="${INDEX_DIR}/genome"
 READS_DIR="/data/users/ksales/Unibe_RNASeq/trimmedreads_Blood"
-OUTPUT_DIR="/data/users/ksales/Unibe_RNASeq/hisat2_output/attempt3"
+OUTPUT_DIR="/data/users/ksales/Unibe_RNASeq/hisat2/hisat2_output/attempt3"
 
 # Build index only once (only array task 0 does this)
 INDEX_LOCK="${INDEX_DIR}/.index_complete"
@@ -103,4 +103,4 @@ apptainer exec --bind /data ${CONTAINER} samtools index \
 
 # Remove intermediate files to save space
 rm ${OUTPUT_DIR}/${SAMPLE}.sam
-rm ${OUTPUT_DIR}/${SAMPLE}.bam
+rm ${OUTPUT_DIR}/${SAMPLE}.bams
