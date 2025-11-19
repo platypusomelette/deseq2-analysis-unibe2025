@@ -63,6 +63,10 @@ dds <- DESeq(dds)
 # VST with blind=TRUE
 vsd <- vst(dds, blind = TRUE)
 
+# Optional try rlog()
+#rld <- rlog(dds, blind = TRUE)
+
+
 # Step 3: PCA Plot 
 
 # PCA plot
