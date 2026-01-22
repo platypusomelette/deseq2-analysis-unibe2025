@@ -1,5 +1,5 @@
 This repository contains code for RNA Sequencing
-<<<<<<< HEAD
+
 
 ## Part 1: BASH Scripts
 
