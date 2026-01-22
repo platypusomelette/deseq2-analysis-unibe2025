@@ -1,7 +1,7 @@
 This repository contains code for RNA Sequencing
 <<<<<<< HEAD
 
-Part 1: BASH Scripts
+## Part 1: BASH Scripts
 
 Pipeline:
 1. Trim (Calliefastp)
@@ -12,7 +12,7 @@ Pipeline:
 6. Exploratory data anaylsis and QC (deseq_v2.r)
 Then use clusterProfiler for GO Terms (GO_v3.R) 
 
-Part 2: R Scripts 
+## Part 2: R Scripts 
 
 All analyses are carried out using a 2-factor design
 
@@ -40,12 +40,3 @@ GO:
 volcanoplot:
 1. volcano plot of DE_DKO_adj
 =======
-Pipeline:
-1. Trim (Calliefastp)
-2. Quality Control (Calliefastqc & Calliemultiqc)
-3. Map reads to reference genome (Calliehisat)
-4. Quality Control (Calliefastqc & Calliemultiqc)
-5. Count number of reads per gene via FeatureCounts (Calliesubread)
-6. Exploratory data anaylsis and QC (deseq_v2.r)
-Then use clusterProfiler for GO Terms (GO_v3.R) 
->>>>>>> 326db96e08994270ed54205be20302f34d7944e0
