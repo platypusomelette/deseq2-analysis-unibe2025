@@ -1,39 +1,81 @@
 This repository contains code for RNA Sequencing
 
 
+
 ## Part 1: BASH Scripts
 
 Pipeline:
+
 1. Trim (Calliefastp)
-2. Quality Control (Calliefastqc & Calliemultiqc)
+2. Quality Control (Calliefastqc \& Calliemultiqc)
 3. Map reads to reference genome (Calliehisat)
-4. Quality Control (Calliefastqc & Calliemultiqc)
+4. Quality Control (Calliefastqc \& Calliemultiqc)
 5. Count number of reads per gene via FeatureCounts (Calliesubread)
 
-## Part 2: R Scripts 
+## Part 2: R Scripts
 
 All analyses are carried out using a 2-factor design
 
-### /R_scripts
-Raw data input files for deseq_v2.R:
-1. **counts.txt**: contains read counts, output from FeatureCounts
-2. **samplenames.txt**: copy-pasted tab-delimited table of sample IDs and experimental group (ex. "Blood_WT_Case")
+### /R\_Scripts
 
-Scripts:
-1. **deseq_v2.R**: DESeq2 2-factor design (WT/DKO, Case/Control): type + condition + type:condition
-    a. outputs **DE_DKO_adj_inputs.RData** which contains the minimally required objects for all downstream scripts. this only contains data for DE_DKO_adj, which is differential expression only within the interaction term of DKO case vs control (subtracted from WT case vs control).
-2. **GO_v3.R**: GO enrichment analysis and dotplots for all DE genes. repeats the analysis after subsetting the data into upregulated and downregulated. works on DE_DKO_adj
-3. **volcanoplot_v1.R**: volcano plot for all DE genes in DE_DKO_adj
+### /raw\_inputfiles
+
+Raw data input files are used by deseq\_v3.R and customGO\_v1:
+
+1. **counts.txt**: contains read counts, output from FeatureCounts
+2. **samplenames.txt**: copy-pasted tab-delimited table of sample IDs and experimental group (ex. "Blood\_WT\_Case")
+3. **41467\_2019\_10601\_MOESM5\_ESM\_minimal.csv**: an edited version of Supplementary Data 3, "Genes in the blood modules with average normalised read counts for each group", used by customGO\_v1 to map ENSEMBL IDs to custom gene sets
+4. **41467\_2019\_10601\_MOESM7\_ESM\_minimal.csv**: an edited version of Supplementary Data 5, "Annotation of the blood modules", used by customGO\_v1 to map module names to human-readable functional annotations
+
+### Scripts:
+
+1. **deseq\_v3.R**: DESeq2 2-factor design (WT/DKO, Case/Control): type + condition + type:condition. Saves DESeqResultsObjects for all contrasts into /downstream\_inputs that can be used for downstream scripts
+2. **GO\_v3.R**: GO enrichment analysis and dotplots for DE\_DKO\_adj. Creates three plots: one for all genes, one within subset of downregulated genes, one within subset of upregulated genes
+3. **customGO\_v1.R:** enrichment analysis of custom gene sets, representing the custom modules defined by Singhania et al. 2019. 
+   	a. Runs a similar enrichment analysis to GO\_v3.R on DE\_DKO\_adj, DE\_healthy, and DE\_diseased. 
+   	b. It also exports customGO\_typeI\_ranks.txt and customGO\_typeII\_ranks.txt, which ranks each module by its percentage of type I IFN and type II IFN genes (as annotated in Supp. data 3).
+   	c. It also exports IFNtype\_genelist\_inputs.RData
+4. **volcanoplot\_v2.R:** creates volcano plots for DE\_DKO\_adj and DE\_diseased. Also creates an alternate version which overlays the significant type I IFN genes on the plot.
+
+### /downstream\_inputs
+
+1. **DE\_healthy\_inputs.RData**: "effect of DKO vs WT, for healthy case". type\_DKO\_vs\_WT
+2. **DE\_diseased\_inputs.RData**: "effect of DKO vs WT, for diseased case". c("type\_DKO\_vs\_WT", "typeDKO.conditionCase")
+3. **DE\_WT\_inputs.RData:** "effect of case vs control, for WT". condition\_Case\_vs\_Control
+4. **DE\_DKO\_inputs.RData**: "effect of case vs control, for DKO". this is the BULK difference and is not adjusted by the observations in WT. c("condition\_Case\_vs\_Control", "typeDKO.conditionCase")
+5. **DE\_DKO\_adj\_inputs.RData:** "effect of case vs healthy control, for DKO, ADJUSTED by effect in WT". this is the ADDITIONAL difference, beyond what changes in WT. typeDKO.conditionCase
+6. **IFNtype\_genelist\_inputs.RData**: list created by customGO\_v1.R which allows for labeling of type I or type II genes in volcanoplot\_v2.R
+
+
 
 ### /plots
-deseq:
+
+deseq.pdf:
+
 1. DispEsts plot to assess good fit after variance stabilizing transform (VST)
 2. PCA
 
-GO:
-1. GO enrichment analysis dotplot of all DE genes in DE_DKO_adj
+GO.pdf:
+
+1. GO enrichment analysis dotplot of all DE genes in DE\_DKO\_adj
 2. GO enrichment analysis dotplot of only upregulated genes
 3. GO enrichment analysis dotplot of only downregulated genes
 
-volcanoplot:
-1. volcano plot of DE_DKO_adj
+customGO.pdf:
+
+1. Custom enrichment analysis dotplot of all DE genes in DE\_DKO\_adj
+2. Custom enrichment analysis dotplot of only upregulated genes in DE\_DKO\_adj
+3. Custom enrichment analysis dotplot of only downregulated genes in DE\_DKO\_adj
+4. Custom enrichment analysis dotplot of all DE genes in DE\_healthy
+5. Custom enrichment analysis dotplot of only upregulated genes in DE\_healthy
+6. Custom enrichment analysis dotplot of only downregulated genes in DE\_healthy
+7. Custom enrichment analysis dotplot of all DE genes in DE\_disease
+8. Custom enrichment analysis dotplot of only upregulated genes in DE\_disease
+9. Custom enrichment analysis dotplot of only downregulated genes in DE\_disease
+
+volcanoplot.pdf:
+
+1. volcano plot of DE\_DKO\_adj
+2. volcano plot of DE\_DKO\_adj with type I IFN genes labeled
+3. volcano plot of DE\_diseased
+4. volcano plot of DE\_diseased with type I IFN genes labeled
