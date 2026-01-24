@@ -31,11 +31,11 @@ Raw data input files are used by deseq\_v3.R and customGO\_v1:
 
 1. **deseq\_v3.R**: DESeq2 2-factor design (WT/DKO, Case/Control): type + condition + type:condition. Saves DESeqResultsObjects for all contrasts into /downstream\_inputs that can be used for downstream scripts
 2. **GO\_v3.R**: GO enrichment analysis and dotplots for DE\_DKO\_adj. Creates three plots: one for all genes, one within subset of downregulated genes, one within subset of upregulated genes
-3. **customGO\_v1.R:** enrichment analysis of custom gene sets, representing the custom modules defined by Singhania et al. 2019. 
-   	a. Runs a similar enrichment analysis to GO\_v3.R on DE\_DKO\_adj, DE\_healthy, and DE\_diseased. 
-   	b. It also exports customGO\_typeI\_ranks.txt and customGO\_typeII\_ranks.txt, which ranks each module by its percentage of type I IFN and type II IFN genes (as annotated in Supp. data 3).
-   	c. It also exports IFNtype\_genelist\_inputs.RData
-4. **volcanoplot\_v2.R:** creates volcano plots for DE\_DKO\_adj and DE\_diseased. Also creates an alternate version which overlays the significant type I IFN genes on the plot.
+3. **customGO\_v1.R:** enrichment analysis of custom gene sets, representing the custom modules defined by Singhania et al. 2019.
+      - Runs a similar enrichment analysis to GO\_v3.R on DE\_DKO\_adj, DE\_healthy, and DE\_diseased. 
+      - It also exports customGO\_typeI\_ranks.txt and customGO\_typeII\_ranks.txt, which ranks each module by its percentage of type I IFN and type II IFN genes (as annotated in Supp. data 3).
+      - It also exports IFNtype\_genelist\_inputs.RData
+5. **volcanoplot\_v2.R:** creates volcano plots for DE\_DKO\_adj and DE\_diseased. Also creates an alternate version which overlays the significant type I IFN genes on the plot.
 
 ### /downstream\_inputs
 
@@ -51,18 +51,15 @@ Raw data input files are used by deseq\_v3.R and customGO\_v1:
 ### /plots
 
 deseq.pdf:
-
 1. DispEsts plot to assess good fit after variance stabilizing transform (VST)
 2. PCA
 
 GO.pdf:
-
 1. GO enrichment analysis dotplot of all DE genes in DE\_DKO\_adj
 2. GO enrichment analysis dotplot of only upregulated genes
 3. GO enrichment analysis dotplot of only downregulated genes
 
 customGO.pdf:
-
 1. Custom enrichment analysis dotplot of all DE genes in DE\_DKO\_adj
 2. Custom enrichment analysis dotplot of only upregulated genes in DE\_DKO\_adj
 3. Custom enrichment analysis dotplot of only downregulated genes in DE\_DKO\_adj
@@ -74,7 +71,6 @@ customGO.pdf:
 9. Custom enrichment analysis dotplot of only downregulated genes in DE\_disease
 
 volcanoplot.pdf:
-
 1. volcano plot of DE\_DKO\_adj
 2. volcano plot of DE\_DKO\_adj with type I IFN genes labeled
 3. volcano plot of DE\_diseased
