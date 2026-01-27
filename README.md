@@ -1,4 +1,4 @@
-This repository contains code for RNA Sequencing
+This repository contains code for DESeq2 interaction analysis of bulk RNAseq data from Singhania et al. 2019. The data is subsetted from blood samples of Ifnar−/− × Ifngr−/− vs control mice, either healthy or infected with Toxoplasma gondii. The scripts in this repository run FASTQ quality control, mapping, and read counting in BASH; as well as differential expression and gene set enrichment analyses in R.
 
 
 
