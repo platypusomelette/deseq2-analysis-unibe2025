@@ -1,4 +1,4 @@
-This repository contains code for DESeq2 interaction analysis of bulk RNAseq data from Singhania et al. 2019. The data is subsetted from blood samples of Ifnar−/− × Ifngr−/− vs control mice, either healthy or infected with _Toxoplasma gondii_.
+This repository contains code for DESeq2 interaction analysis of bulk RNAseq data from Singhania et al. 2019. The data is subsetted from blood samples of _Ifnar−/− × Ifngr−/−_ vs control mice, either healthy or infected with _Toxoplasma gondii_.
 
 
 
