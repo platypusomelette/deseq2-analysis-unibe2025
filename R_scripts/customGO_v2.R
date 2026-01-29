@@ -134,9 +134,9 @@ typeI_ranks <- data.frame(sort(typeI_hits / module_totals, decreasing=TRUE))
 typeII_ranks <- data.frame(sort(typeII_hits / module_totals, decreasing=TRUE))
 
 # save ranks to tab delimited txt
-write.table(typeI_ranks, file = "customGO_typeI_ranks.txt", 
+write.table(typeI_ranks, file = "text_outputs/customGO_typeI_ranks.txt", 
             sep = "\t", row.names = TRUE, col.names = "type_I_percent", quote = FALSE)
-write.table(typeII_ranks, file = "customGO_typeII_ranks.txt", 
+write.table(typeII_ranks, file = "text_outputs/customGO_typeII_ranks.txt", 
             sep = "\t", row.names = TRUE, col.names = "type_II_percent", quote = FALSE)
 
 
@@ -155,4 +155,4 @@ DKO_adj_tophits <- DE_DKO_adj_renamed[order(DE_DKO_adj_renamed$padj),]
 DKO_adj_notIFN_tophits <- rownames(DKO_adj_tophits)[!rownames(DKO_adj_tophits) %in% c(typeI_genelist$Gene.name, typeII_genelist$Gene.name)]
 DKO_adj_notIFN_tophits <- data.frame(DKO_adj_tophits)[DKO_adj_notIFN_tophits,]
 
-write.table(DKO_adj_notIFN_tophits[6:7], file = "DKO_adj_notIFN_tophits.tsv")
+write.table(DKO_adj_notIFN_tophits[6:7], file = "text_outputs/DKO_adj_notIFN_tophits.tsv")

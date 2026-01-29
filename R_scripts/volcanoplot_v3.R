@@ -85,7 +85,7 @@ DE_DKO_adj_volcano_IFN <- IFN_volcanoplotter(res_DKO_adj, DE_DKO_adj, DE_DKO_adj
 print(DE_DKO_adj_volcano$DE_volcano)
 print(DE_DKO_adj_volcano_IFN$DE_volcano)
 # save top hits to tab delimited txt
-write.table(DE_DKO_adj_volcano$tophits, file = "DE_DKO_adj_volcano_tophits.txt", 
+write.table(DE_DKO_adj_volcano$tophits, file = "text_outputs/DE_DKO_adj_volcano_tophits.txt", 
             sep = "\t", row.names = TRUE, quote = FALSE)
 
 # DE_WT
@@ -95,7 +95,7 @@ DE_WT_volcano_IFN <- IFN_volcanoplotter(res_WT, DE_WT, DE_WT_renamed, 'WT Diseas
 print(DE_WT_volcano$DE_volcano)
 print(DE_WT_volcano_IFN$DE_volcano)
 # save top hits to tab delimited txt
-write.table(DE_WT_volcano$tophits, file = "DE_WT_volcano_tophits.txt", 
+write.table(DE_WT_volcano$tophits, file = "text_outputs/DE_WT_volcano_tophits.txt", 
             sep = "\t", row.names = TRUE, quote = FALSE)
 
 # DE_DKO
@@ -105,7 +105,7 @@ DE_DKO_volcano_IFN <- IFN_volcanoplotter(res_DKO, DE_DKO, DE_DKO_renamed, 'DKO D
 print(DE_DKO_volcano$DE_volcano)
 print(DE_DKO_volcano_IFN$DE_volcano)
 # save top hits to tab delimited txt
-write.table(DE_DKO_volcano$tophits, file = "DE_DKO_volcano_tophits.txt", 
+write.table(DE_DKO_volcano$tophits, file = "text_outputs/DE_DKO_volcano_tophits.txt", 
             sep = "\t", row.names = TRUE, quote = FALSE)
 
 # DE_diseased
@@ -115,7 +115,7 @@ DE_diseased_volcano_IFN <- IFN_volcanoplotter(res_diseased, DE_diseased, DE_dise
 print(DE_diseased_volcano$DE_volcano)
 print(DE_diseased_volcano_IFN$DE_volcano)
 # save top hits to tab delimited txt
-write.table(DE_diseased_volcano$tophits, file = "DE_diseased_volcano_tophits.txt", 
+write.table(DE_diseased_volcano$tophits, file = "text_outputs/DE_diseased_volcano_tophits.txt", 
             sep = "\t", row.names = TRUE, quote = FALSE)
 
 # save DE genes in DKO_adj that are not in WT, to tab delimited txt
@@ -123,7 +123,7 @@ DKO_adj_vs_WT_tophits <- rownames(DE_DKO_adj_volcano$tophits)[!rownames(DE_DKO_a
 
 DKO_adj_vs_WT_tophits <- DE_DKO_adj_volcano$tophits[DKO_adj_vs_WT_tophits,]
 
-write.table(DKO_adj_vs_WT_tophits[6], file = "DKO_adj_vs_WT_volcano_tophits.tsv")
+write.table(DKO_adj_vs_WT_tophits[6], file = "text_outputs/DKO_adj_vs_WT_volcano_tophits.tsv")
 
 # save plots
 dev.off()
